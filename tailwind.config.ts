@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,12 +62,40 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Kid-friendly colors
+				kid: {
+					blue: '#58CCF5',
+					green: '#77DD77',
+					purple: '#9B87F5',
+					yellow: '#FFE15C',
+					orange: '#FFA26B',
+					pink: '#FFA8C5',
+					red: '#FF6961',
+				},
+				// Pastel/Soft colors for backgrounds
+				soft: {
+					blue: '#D3E4FD',
+					green: '#F2FCE2',
+					purple: '#E5DEFF',
+					yellow: '#FEF7CD',
+					orange: '#FEC6A1',
+					pink: '#FFDEE2',
+					peach: '#FDE1D3',
+					gray: '#F1F0FB',
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				xl: '1rem',
+				'2xl': '1.5rem',
+				'3xl': '2rem',
+			},
+			fontFamily: {
+				comic: ['Comic Sans MS', 'Comic Sans', 'cursive'],
+				round: ['Nunito', 'Quicksand', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
@@ -84,11 +113,43 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'bounce-slight': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-5px)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						transform: 'scale(0.95)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'scale(1)',
+						opacity: '1'
+					}
+				},
+				'pop': {
+					'0%': {
+						transform: 'scale(1)'
+					},
+					'50%': {
+						transform: 'scale(1.05)'
+					},
+					'100%': {
+						transform: 'scale(1)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'bounce-slight': 'bounce-slight 2s ease-in-out infinite',
+				'scale-in': 'scale-in 0.3s ease-out',
+				'pop': 'pop 0.3s ease-in-out'
 			}
 		}
 	},
