@@ -25,12 +25,10 @@ const Index = () => {
       const parsedData = JSON.parse(storedUserData);
       setUserData(parsedData);
       
-      // If we have complete user data, navigate to dashboard
-      if (parsedData.name && parsedData.classLevel !== null) {
-        navigate('/dashboard');
-      }
+      // If we have complete user data, don't automatically navigate to dashboard
+      // This allows users to reset their information or switch profiles if desired
     }
-  }, [navigate]);
+  }, []);
 
   const handleStartLearning = () => {
     if (userData.name && userData.classLevel !== null) {
@@ -82,6 +80,15 @@ const Index = () => {
     }
   };
 
+  const handleResetProfile = () => {
+    localStorage.removeItem('userData');
+    setUserData({
+      name: '',
+      age: null,
+      classLevel: null
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-soft-purple to-soft-blue px-6 py-12">
       <div className="flex flex-col items-center text-center mb-12">
@@ -122,17 +129,27 @@ const Index = () => {
       ) : (
         <div className="w-full max-w-md bg-white rounded-3xl shadow-lg p-8 animate-scale-in">
           <h2 className="text-2xl font-bold mb-6 text-center">
-            Hi, {userData.name}!
+            Welcome back, {userData.name}!
           </h2>
           <p className="text-lg text-center mb-8">
-            Ready to start your learning adventure?
+            Ready to continue your learning adventure?
           </p>
-          <Button 
-            className="kid-button bg-kid-purple w-full flex items-center justify-center gap-2"
-            onClick={handleStartLearning}
-          >
-            Start Learning <Sparkles className="w-5 h-5" />
-          </Button>
+          <div className="space-y-4">
+            <Button 
+              className="kid-button bg-kid-purple w-full flex items-center justify-center gap-2"
+              onClick={handleStartLearning}
+            >
+              Continue Learning <Sparkles className="w-5 h-5" />
+            </Button>
+            
+            <Button 
+              variant="outline"
+              className="w-full"
+              onClick={handleResetProfile}
+            >
+              Reset Profile
+            </Button>
+          </div>
         </div>
       )}
       
