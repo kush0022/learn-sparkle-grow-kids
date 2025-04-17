@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Book, Sparkles } from 'lucide-react';
 import AgeSelector from '@/components/AgeSelector';
+import FloatingSymbols from '@/components/FloatingSymbols';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -90,53 +91,57 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-soft-purple to-soft-blue px-6 py-12">
-      <div className="flex flex-col items-center text-center mb-12">
-        <div className="w-20 h-20 rounded-full bg-kid-purple flex items-center justify-center mb-6">
+    <div className="min-h-screen relative flex flex-col items-center justify-center bg-gradient-to-br from-soft-purple via-soft-blue to-soft-peach px-6 py-12 overflow-hidden">
+      <FloatingSymbols />
+      
+      <div className="flex flex-col items-center text-center mb-12 relative z-10">
+        <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-lg flex items-center justify-center mb-6 border border-white/30">
           <Book className="w-10 h-10 text-white" />
         </div>
-        <h1 className="text-4xl font-bold mb-4 text-center">Learn, Sparkle, Grow</h1>
-        <p className="text-lg mb-8 max-w-md">
+        <h1 className="text-4xl font-bold mb-4 text-center text-white">
+          Learn, Sparkle, Grow
+        </h1>
+        <p className="text-lg mb-8 max-w-md text-white/90">
           A fun learning platform for young minds to explore academic subjects through interactive flashcards
         </p>
       </div>
       
       {!userData.name ? (
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-lg p-8 animate-scale-in">
-          <h2 className="text-2xl font-bold mb-6 text-center">Welcome!</h2>
+        <div className="w-full max-w-md bg-white/10 backdrop-blur-lg rounded-3xl shadow-lg border border-white/30 p-8 animate-scale-in relative z-10">
+          <h2 className="text-2xl font-bold mb-6 text-center text-white">Welcome!</h2>
           <form onSubmit={handleNameSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-lg font-medium mb-2">
+              <label htmlFor="name" className="block text-lg font-medium mb-2 text-white/90">
                 What's your name?
               </label>
               <input
                 type="text"
                 id="name"
                 name="name"
-                className="w-full rounded-xl border-2 border-soft-purple py-3 px-4 focus:border-kid-purple outline-none"
+                className="w-full rounded-xl border-2 border-white/30 bg-white/10 backdrop-blur-sm py-3 px-4 text-white placeholder-white/50 focus:border-white outline-none"
                 placeholder="Enter your name"
                 required
               />
             </div>
             <Button 
               type="submit"
-              className="kid-button bg-kid-purple w-full"
+              className="kid-button bg-white/20 hover:bg-white/30 backdrop-blur-lg w-full text-white border border-white/30"
             >
               Continue
             </Button>
           </form>
         </div>
       ) : (
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-lg p-8 animate-scale-in">
-          <h2 className="text-2xl font-bold mb-6 text-center">
+        <div className="w-full max-w-md bg-white/10 backdrop-blur-lg rounded-3xl shadow-lg border border-white/30 p-8 animate-scale-in relative z-10">
+          <h2 className="text-2xl font-bold mb-6 text-center text-white">
             Welcome back, {userData.name}!
           </h2>
-          <p className="text-lg text-center mb-8">
+          <p className="text-lg text-center mb-8 text-white/90">
             Ready to continue your learning adventure?
           </p>
           <div className="space-y-4">
             <Button 
-              className="kid-button bg-kid-purple w-full flex items-center justify-center gap-2"
+              className="kid-button bg-white/20 hover:bg-white/30 backdrop-blur-lg w-full text-white border border-white/30 flex items-center justify-center gap-2"
               onClick={handleStartLearning}
             >
               Continue Learning <Sparkles className="w-5 h-5" />
@@ -144,7 +149,7 @@ const Index = () => {
             
             <Button 
               variant="outline"
-              className="w-full"
+              className="w-full bg-white/10 hover:bg-white/20 text-white border-white/30"
               onClick={handleResetProfile}
             >
               Reset Profile
