@@ -3,7 +3,7 @@ import React from 'react';
 import { 
   BookText, // English
   Calculator, // Math
-  Flask, // Science
+  Beaker, // Science (replacing Flask)
   Globe2, // Social Science
   Languages, // Hindi
   GraduationCap, // GK
@@ -28,7 +28,7 @@ const subjectConfigs = {
     image: '/subjects/math.png'
   },
   science: {
-    icon: <Flask className="w-12 h-12 text-kid-purple" />,
+    icon: <Beaker className="w-12 h-12 text-kid-purple" />,
     name: 'Science',
     color: 'bg-soft-purple border-kid-purple',
     image: '/subjects/science.png'
