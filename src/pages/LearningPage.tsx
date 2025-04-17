@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
@@ -9,7 +8,6 @@ import StarReward from '@/components/StarReward';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
 
-// Mock data - in a real app, this would come from an API or database
 const mockFlashcards = {
   english: [
     { 
@@ -31,6 +29,19 @@ const mockFlashcards = {
       answer: "A word that describes a noun", 
       type: "flip" as const 
     },
+    {
+      id: 4,
+      question: "Complete the sentence: The cat ___ on the mat.",
+      answer: "sat",
+      type: "input" as const
+    },
+    {
+      id: 5,
+      question: "Choose the correct pronoun: ___ am going to school.",
+      answer: "I",
+      options: ["I", "He", "They", "We"],
+      type: "quiz" as const
+    }
   ],
   math: [
     { 
@@ -52,6 +63,19 @@ const mockFlashcards = {
       answer: "Length × Width", 
       type: "flip" as const 
     },
+    {
+      id: 4,
+      question: "What is 8 × 7?",
+      answer: "56",
+      type: "input" as const
+    },
+    {
+      id: 5,
+      question: "Which shape has 6 faces?",
+      answer: "Cube",
+      options: ["Sphere", "Circle", "Cube", "Triangle"],
+      type: "quiz" as const
+    }
   ],
   science: [
     { 
@@ -73,6 +97,19 @@ const mockFlashcards = {
       answer: "The process by which plants make food using sunlight", 
       type: "flip" as const 
     },
+    {
+      id: 4,
+      question: "What is the process of water turning into vapor called?",
+      answer: "Evaporation",
+      type: "input" as const
+    },
+    {
+      id: 5,
+      question: "Which is not a state of matter?",
+      answer: "Energy",
+      options: ["Solid", "Liquid", "Gas", "Energy"],
+      type: "quiz" as const
+    }
   ],
   social: [
     { 
@@ -93,7 +130,7 @@ const mockFlashcards = {
       question: "What are the major seasons in India?", 
       answer: "Summer, Monsoon, Winter", 
       type: "flip" as const 
-    },
+    }
   ],
   hindi: [
     { 
@@ -114,7 +151,7 @@ const mockFlashcards = {
       question: "'दिन' का विलोम शब्द क्या है?", 
       answer: "रात", 
       type: "flip" as const 
-    },
+    }
   ],
   gk: [
     { 
@@ -135,7 +172,7 @@ const mockFlashcards = {
       question: "Which is the national bird of India?", 
       answer: "Peacock", 
       type: "flip" as const 
-    },
+    }
   ]
 };
 
@@ -172,16 +209,13 @@ const LearningPage: React.FC = () => {
     if (currentCardIndex < cards.length - 1) {
       setCurrentCardIndex(prev => prev + 1);
     } else {
-      // Calculate stars based on performance
       const newStars = Math.ceil((correctAnswers / cards.length) * 3);
       setStars(newStars);
       setShowResults(true);
       
-      // Update progress in localStorage
       const progressData = localStorage.getItem('subjectProgress') || '{}';
       const progress = JSON.parse(progressData);
       
-      // Calculate new progress as percentage of cards mastered
       const newProgress = Math.min(100, (progress[validSubject] || 0) + Math.ceil((correctAnswers / cards.length) * 30));
       
       localStorage.setItem('subjectProgress', JSON.stringify({
@@ -201,7 +235,6 @@ const LearningPage: React.FC = () => {
     setShowResults(false);
   };
 
-  // Calculate progress percentage through the lesson
   const progressPercentage = ((currentCardIndex + 1) / cards.length) * 100;
 
   return (
